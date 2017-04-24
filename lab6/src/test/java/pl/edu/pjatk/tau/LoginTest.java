@@ -17,16 +17,33 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class LoginTest {
 
 	static WebDriver driver;
 	
     @BeforeClass
-    public static void setUp() {
+    /*public static void setUp() {
     	System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
-    }
+    }*/
+    
+    public static void setUp() {
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setJavascriptEnabled(true);
+		caps.setCapability("takesScreenshot", true);
+		caps.setCapability(
+				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/opt/tp/phantomjs-2.1.1-linux-x86_64/bin/phantomjs"); // LINUX
+				PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "D:\\phantomjs-2.1.1-windows\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe"); // WINDOWS
+				//PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "/tmp/phantomjs"); // LINUX (/linux/phantomjs) lub /tmp/phantomjs
+
+		driver = new PhantomJSDriver(caps);
+	}
+    
+    
     
     @Test
     public void showLoginPage() throws IOException {
