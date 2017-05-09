@@ -73,7 +73,7 @@ public class CarGarage extends WebDriverPage {
 
     public String getLoginFailedMessage() {
         WebElement element = findElement(By.id("badData"));
-        assertEquals("Nieprawid≥owe dane logowania.", element.getText());
+        assertEquals("Nieprawid≈Çowe dane logowania.", element.getText());
 
         try {
             File screenshot = ((TakesScreenshot) this.getDriverProvider().get()).getScreenshotAs(OutputType.FILE);
