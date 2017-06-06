@@ -16,7 +16,7 @@ import pl.tau.util.ConnectionProvider;
 public class BookDAO {
  
     private final static String CREATE = "INSERT INTO book(isbn, title, description) VALUES(:isbn, :title, :description);";
-    private final static String READ = "SELECT isbn, title, description FROM book WHERE isbn = :isbn;";
+    private final static String READ = "SELECT id, isbn, title, description FROM book WHERE isbn = :isbn;";
     private final static String UPDATE = "UPDATE book SET isbn=:isbn, title=:title, description=:description WHERE isbn = :isbn;";
     private final static String DELETE = "DELETE FROM book WHERE isbn=:isbn;";
     private final static String READ_LIST = "SELECT * FROM book;";
@@ -29,13 +29,18 @@ public class BookDAO {
     }
  
     public boolean create(Book book) {
+    	List<Book> bookList = list();
+    	
+    	for(Book b : bookList) {
+    		if(b.getIsbn().equals(book.getIsbn())) return false;;	
+    	}
+    	
         BeanPropertySqlParameterSource beanParamSource = new BeanPropertySqlParameterSource(book);
         int rowsAffected = template.update(CREATE, beanParamSource);
-        boolean result = false;
         if (rowsAffected > 0) {
-            result = true;
+            return true;
         }
-        return result;
+        return false;
     }
     
     public List<Book> list() {

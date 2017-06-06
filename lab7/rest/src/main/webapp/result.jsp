@@ -14,5 +14,6 @@
     <p>Tytuł: <%= book.getTitle() %><br>
     ISBN: <%= book.getIsbn() %><br>
     Opis: <%= book.getDescription() %></p>
+    Id dla tej pozycji: <%=book.getId() %>
 </body>
 </html>

@@ -18,7 +18,6 @@ import pl.tau.model.Book;
 
 
 @RestController
-
 public class BookRestController {
 
 	
@@ -46,7 +45,7 @@ public class BookRestController {
 	public ResponseEntity createBook(@RequestBody Book book) {
 		boolean result = bookDAO.create(book);
 		
-		return (result == true) ? new ResponseEntity(book, HttpStatus.OK) : new ResponseEntity(book, HttpStatus.NOT_ACCEPTABLE) ;
+		return (result == true) ? new ResponseEntity(book, HttpStatus.OK) : new ResponseEntity("No Book created for given ISBN " + book.getIsbn(), HttpStatus.NOT_ACCEPTABLE) ;
 	}
 
 	@DeleteMapping("books/{isbn}")

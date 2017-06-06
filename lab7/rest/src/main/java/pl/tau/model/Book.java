@@ -4,12 +4,23 @@ import org.springframework.stereotype.Component;
 
 
 public class Book {
-    private String isbn;
+	private Long id;
+	private String isbn;
     private String title;
     private String description;
+    
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
     public String getIsbn() {
         return isbn;
     }
+    
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }

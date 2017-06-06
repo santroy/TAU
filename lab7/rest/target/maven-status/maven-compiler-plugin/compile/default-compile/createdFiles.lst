@@ -1,0 +1,7 @@
+pl\tau\servlet\BookServlet.class
+pl\tau\util\ConnectionProvider.class
+pl\tau\api\BookRestController.class
+pl\tau\api\AppConfig.class
+pl\tau\dao\BookDAO.class
+pl\tau\api\AppInitializer.class
+pl\tau\model\Book.class

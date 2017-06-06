@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DuplicateKeyException;
+
 import pl.tau.dao.BookDAO;
 import pl.tau.model.Book;
  
@@ -21,38 +23,50 @@ public class BookServlet extends HttpServlet {
     }
  
     protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+            HttpServletResponse response) throws DuplicateKeyException, ServletException, IOException {
+    	
         request.setCharacterEncoding("UTF-8");
+        
         String isbn = request.getParameter("isbn");
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        
         String option = request.getParameter("option");
+        
         BookDAO dao = new BookDAO();
         Book book = null;
         String operation = null;
+        
         boolean result = false;
+        
         if("search".equals(option)) {
             book = dao.read(isbn);
-            result = book!=null? true:false;
-            operation = "search";
-        } else if("add".equals(option)) {
+            result = (book != null) ? true : false;
+            operation = option;           
+        } 
+        else if("add".equals(option)) {
             book = new Book(isbn, title, description);
             result = dao.create(book);
-            operation = "add";
-        } else if("update".equals(option)) {
+            operation = option;
+        } 
+        else if("update".equals(option)) {
             book = new Book(isbn, title, description);
             result = dao.update(book);
-            operation = "update";
-        } else if("delete".equals(option)) {
+            operation = option;
+        } 
+        else if("delete".equals(option)) {
             book = new Book(isbn, title, description);
             result = dao.delete(book);
-            operation = "delete";
+            operation = option;
         }
+        
+        
         if(book != null && result) {
             request.setAttribute("option", operation);
             request.setAttribute("book", book);
             request.getRequestDispatcher("result.jsp").forward(request, response);
-        } else {
+        } 
+        else {
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
