@@ -4,4 +4,4 @@ dist: trusty
 os: linux
 script: 
 - cd lab13
-- make && make test
+- make && make tests
