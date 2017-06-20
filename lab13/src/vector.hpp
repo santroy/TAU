@@ -1,12 +1,11 @@
 #ifndef __VECTOR_HPP__
 #define __VECTOR_HPP__
 #include <vector>
-using std::vector;  
 
 class Vector { 
 
     private:
-        vector <int> params;
+        std::vector <int> params;
         void printVector (int i);
     public:
         void addPoint(int point);

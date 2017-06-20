@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <stdexcept>
+	
 using std::vector;
 using std::cout;
 using std::mem_fun;
