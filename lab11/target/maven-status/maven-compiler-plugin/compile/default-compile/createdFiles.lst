@@ -1,0 +1,7 @@
+pl\tau\model\Order.class
+pl\tau\dao\GenericDao.class
+pl\tau\AppContext.class
+pl\tau\dao\OrderDao.class
+pl\tau\model\Client.class
+pl\tau\dao\ClientDao.class
+pl\tau\config\JpaConfig.class
